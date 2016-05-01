@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/09/2015 21:59:51 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.pojo.Grupos" table="grupos" schema="public" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="increment" />
+        </id>
+        <property name="nome" type="string">
+            <column name="nome" />
+        </property>
+        <set name="contatoGrupos" table="contato_grupo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_grupo" />
+            </key>
+            <one-to-many class="model.pojo.ContatoGrupo" />
+        </set>
+    </class>
+</hibernate-mapping>

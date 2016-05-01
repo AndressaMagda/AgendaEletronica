@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+
+    <h:head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--<script src="resources/js/jquery-1.11.1.js"></script>-->
+        <title>Cadastro</title>
+        
+        <script type="text/javascript">
+            //<![CDATA[
+            //]]>
+
+        </script>
+    </h:head>
+    
+    <h:body>
+        <div id="header"> 
+            <ui:insert name="header" > 
+                <ui:include src="/templates/header.xhtml" /> 
+            </ui:insert> 
+        </div> 
+        
+        <div class="ui-grid ui-grid-responsive">
+            <div class="ui-grid-row">
+                <p:layoutUnit position="center">
+                    <h:form id="form-cadastra">
+                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                            <p:outputLabel for="nome:" value="Nome:" />
+                            <p:inputText value="#{contatoController.contato.nome}" id="nome"  required="true" />
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                            <p:outputLabel for="sexo" value="Sexo:" />
+                            <p:selectOneRadio id="sexo" value="#{contatoController.contato.sexo}" required="true" >
+                                <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+                                <f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+                            </p:selectOneRadio>
+                        </h:panelGrid>
+                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                            <p:outputLabel for="popup" value="Data de Nascimento:" />
+                            <p:calendar id="popup" value="#{contatoController.contato.dataNascimento}" navigator="true" yearRange="-111:+39" pattern="yyyy-MM-dd" required="true"/>
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                            <p:outputLabel for="telefone" value="Telefone: "/>
+                            <p:inputMask id="telefone" value="#{contatoController.contato.telefoneNum}" mask="(99) 99999-9999" required="true"/>
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                            <p:outputLabel for="onemenu" value="Tipo: " />
+                            <p:selectOneMenu id="onemenu" value="#{contatoController.contato.telefoneTipo}" required="true">
+                                <f:selectItem itemLabel="Select One" itemValue="" />
+                                <f:selectItem itemLabel="Celular" itemValue="Celular" />
+                                <f:selectItem itemLabel="Casa" itemValue="Casa" />
+                                <f:selectItem itemLabel="Comercial" itemValue="Comercial" />
+                            </p:selectOneMenu>
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                            <p:button outcome="index" value="Voltar" icon="ui-icon-carat-1-w"></p:button>
+                            <p:commandButton value="Cadastrar" action="#{contatoController.adicionarContato}" ajax="false" icon="ui-icon-disk"/>
+                        </h:panelGrid>
+                    </h:form>
+                </p:layoutUnit>
+            </div><!--Fim do ui-grid-row-->
+        </div><!--Fim do ui-fluid-->
+        
+    </h:body>
+</html>

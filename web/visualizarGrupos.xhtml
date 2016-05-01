@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Visualizar Grupos</title>
+    </h:head>
+    <h:body>
+        
+        <div id="header"> 
+            <ui:insert name="header" > 
+                <ui:include src="/templates/header.xhtml" /> 
+            </ui:insert> 
+        </div> 
+        
+         <div id="content"> 
+            <h:form>
+                <p:dataTable value="#{grupoController.grupos}" style="margin-top: 20px; text-align: center;"
+                var="grupo" id="table" emptyMessage="Nenhum grupo cadastrado!" rows="10" paginator="true">
+
+                <p:column filterBy="#{grupo.nome}" headerText="Nome" footerText="Nome">
+                    <h:outputText value="#{grupo.nome}"/>
+                </p:column>
+                    
+                <p:column headerText="Contatos" footerText="Contatos">
+                    <ui:repeat value="#{contatoGrupoController.contatosNoGrupo(grupo)}" var="contatoGrupo">
+                        <div style="margin: 15px 0;">
+                            <h:outputText value="${contatoGrupo.contato.nome}" />
+                            <span style="margin-left: 20px;"><p:commandButton action="#{contatoGrupoController.excluirDoGrupo(contatoGrupo)}" icon="ui-icon-trash"/></span>
+                        </div>
+                    </ui:repeat>
+                </p:column>
+                    
+                <p:column headerText="Ações" footerText="Ações">
+                    <p:commandButton action="#{grupoController.prepararAlterarGrupo(grupo)}" icon="ui-icon-pencil"/>
+                    <p:commandButton action="#{grupoController.excluirGrupo(grupo)}" icon="ui-icon-trash"/>
+                </p:column>
+
+            </p:dataTable>
+            </h:form>
+        </div> 
+        
+    </h:body>
+</html>
+

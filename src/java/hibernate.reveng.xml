@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="AgendaEletronica" match-schema="public"/>
+  <table-filter match-name="contato"/>
+  <table-filter match-name="grupos"/>
+  <table-filter match-name="mensagens"/>
+  <table-filter match-name="mensagens_enviadas"/>
+  <table-filter match-name="contato_grupo"/>
+  <table-filter match-name="ligacoes"/>
+</hibernate-reverse-engineering>

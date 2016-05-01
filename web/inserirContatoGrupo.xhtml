@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Adicionar Contato em Grupo</title>
+    </h:head>
+    <h:body>
+        
+        <div id="header"> 
+            <ui:insert name="header" > 
+                <ui:include src="/templates/header.xhtml" /> 
+            </ui:insert> 
+        </div> 
+        
+         <div class="ui-grid ui-grid-responsive">
+            <div class="ui-grid-row">
+                
+                <p:layoutUnit position="center">
+                    <h:form id="form-liga">
+                        <p:growl id="growl" life="2000" />
+                        <h:panelGrid columns="2" style="margin-bottom:10px;" cellpadding="5">
+                            
+                            <p:outputLabel for="contato" value="Contatos: " />
+                            <p:selectOneMenu id="contato" value="#{contatoGrupoController.contato.id}" required="true">
+                                <f:selectItem itemLabel="Selecione um contato" itemValue="" />
+                                <c:forEach var="contato" items="#{contatoGrupoController.contatos}">  
+                                    <f:selectItem itemLabel="#{contato.nome}" itemValue="#{contato.id}" />
+                                </c:forEach> 
+                            </p:selectOneMenu>
+                            
+                            <p:outputLabel for="grupo" value="Grupos: " />
+                            <p:selectOneMenu id="grupo" value="#{contatoGrupoController.grupo.id}" required="true">
+                                <f:selectItem itemLabel="Selecione um grupo" itemValue="" />
+                                <c:forEach var="grupo" items="#{contatoGrupoController.grupos}">  
+                                    <f:selectItem itemLabel="#{grupo.nome}" itemValue="#{grupo.id}" />
+                                </c:forEach> 
+                            </p:selectOneMenu>
+                            
+                            <p:commandButton action="#{contatoGrupoController.adicionarAoGrupo}" value="Adicionar no Grupo" ajax="false"/>
+                        </h:panelGrid>
+                    </h:form>
+                    
+                    
+                    
+                </p:layoutUnit>
+                
+            </div><!--Fim do ui-grid-row-->
+        </div><!--Fim do ui-fluid-->
+        
+    </h:body>
+</html>
+

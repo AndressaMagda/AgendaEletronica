@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Visualizar Mensagens de Contato</title>
+    </h:head>
+    <h:body>
+        
+        <div id="header"> 
+            <ui:insert name="header" > 
+                <ui:include src="/templates/header.xhtml" /> 
+            </ui:insert> 
+        </div> 
+        
+         <div id="content"> 
+             <h2>Mensagens de ${mensagemController.contato.nome}:</h2>
+            
+            <c:forEach items="#{mensagemController.mensagensByContato(mensagemController.contato)}" var="mensagem">
+                <div style="margin-bottom: 20px; font-size: 12pt;">
+                    <strong>
+                        <h:outputText value="${mensagem.dataHoraEnvio}" >
+                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="GMT-03:00"/>
+                        </h:outputText>
+                    </strong>
+                    <span style="margin-left: 15px; font-size: 16pt;">${mensagem.conteudo}</span>
+                </div>
+            </c:forEach>
+             
+            <p:button outcome="visualizarMensagensRecebidas" value="Voltar" icon="ui-icon-carat-1-w"></p:button>
+        </div> 
+        
+    </h:body>
+</html>
+

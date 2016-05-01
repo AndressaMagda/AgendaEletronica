@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Ligação em Andamento</title>
+    </h:head>
+    <h:body>
+        
+        <div class="ui-grid ui-grid-responsive">
+            <div class="ui-grid-row">
+                <p:layoutUnit position="center">
+                    <h:form id="ligando">
+                        <p:growl id="growl" life="2000" />
+                        <h:panelGrid columns="1" style="margin-bottom:10px;" cellpadding="5">
+                            <p:outputLabel value="Falando com #{ligacaoController.contato.nome}" rendered="#{not empty ligacaoController.contato.nome}"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid columns="2" style="margin-bottom:10px;" cellpadding="5">
+                            <p:outputLabel for="txt_time" value="Duração: " />
+                            <h:outputText id="txt_time" value="#{ligacaoController.tempo}" />
+                            <p:poll interval="3" listener="#{ligacaoController.increment}" update="txt_time" />
+                        </h:panelGrid>
+                        
+                        <h:panelGrid columns="1" style="margin-bottom:10px;" cellpadding="5">
+                            <p:commandButton action="#{ligacaoController.desliga}" value="Desligar" ajax="false"/>
+                        </h:panelGrid>
+                        
+                    </h:form>
+                </p:layoutUnit>
+            </div><!--Fim do ui-grid-row-->
+        </div><!--Fim do ui-fluid-->
+        
+    </h:body>
+</html>
+

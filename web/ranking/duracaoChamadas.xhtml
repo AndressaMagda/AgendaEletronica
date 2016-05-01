@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Relação do Tempo de Chamadas</title>
+    </h:head>
+    <h:body>
+        
+        <div id="header"> 
+            <ui:insert name="header" > 
+                <ui:include src="/templates/header.xhtml" />
+            </ui:insert> 
+        </div> 
+        
+        <div class="ui-grid ui-grid-responsive">
+            <div class="ui-grid-row" align="center">
+                <p:layoutUnit position="center">
+                    <p:outputLabel value="Duração de Ligagões para Contato" for="duracao" />
+                    <p:chart type="pie" model="#{chartView.pieModelChamadasTotal}" rendered="#{not empty chartView.pieModelChamadasTotal}" id="duracao" style="width:500px;height:400px" />
+                </p:layoutUnit>
+            </div><!--Fim do ui-grid-row-->
+        </div><!--Fim do ui-fluid-->
+        
+    </h:body>
+</html>
+
